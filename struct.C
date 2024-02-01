@@ -31,7 +31,12 @@ int main()
     FILE *f;
 
     f = fopen("global.txt", "r+");
-    fscanf(f, "%d", &totalNoOfRecords); // Store previous value
+    
+    fscanf(f, "%d", &totalNoOfRecords); // Storing previous value
+    if(!totalNoOfRecords)
+    {
+        totalNoOfRecords = 0;
+    }
     fclose(f);
     do
     {
@@ -117,7 +122,7 @@ void insert()
      
     }
      totalNoOfRecords += sizeOfArray;
-    printf("No%d\n", totalNoOfRecords);
+   // printf("No%d\n", totalNoOfRecords);
 
     
 
@@ -237,6 +242,7 @@ void deleteRecord()
         {
             if(id == t.id)
             {
+                totalNoOfRecords--;
               continue;
             }
             fwrite(&t, sizeof(t), 1, f2);
